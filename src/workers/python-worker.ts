@@ -89,7 +89,14 @@ const python = {
       await micropip.install(packages[1])
     }
 
-    const id = self.crypto.randomUUID()
+    const id = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    )
     const version = self.pyodide.version
 
     self.pyodide.registerJsModule('react_py', reactPyModule)
